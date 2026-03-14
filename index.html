@@ -1,6 +1,3 @@
-L
-Copy
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,13 +69,13 @@ Copy
 </style>
 </head>
 <body>
- 
+
 <div class="hdr">
   <div class="htag">⚡ Daily Forge</div>
   <h1>Daily Forge</h1>
   <div class="hdate" id="hdate"></div>
 </div>
- 
+
 <div class="wrap">
   <div class="lbl">What's your goal?</div>
   <div class="goal-grid">
@@ -87,7 +84,7 @@ Copy
     <button class="gbtn" data-v="strength" onclick="pick('g',this)"><span class="gi">🏋️</span>Increase Strength</button>
     <button class="gbtn" data-v="fat"      onclick="pick('g',this)"><span class="gi">🔥</span>Burn Fat</button>
   </div>
- 
+
   <div class="lbl">Target muscles <span style="color:#2a2a3a;font-size:9px">(tap one or more)</span></div>
   <div class="chips" id="chips">
     <button class="chip" data-v="Full Body"  onclick="toggleChip(this)">Full Body</button>
@@ -101,14 +98,14 @@ Copy
     <button class="chip" data-v="Hamstrings" onclick="toggleChip(this)">Hamstrings</button>
     <button class="chip" data-v="Cardio"     onclick="toggleChip(this)">Cardio</button>
   </div>
- 
+
   <div class="lbl">Equipment</div>
   <div class="eq-row">
     <button class="ebtn" data-v="gym"  onclick="pick('e',this)"><span class="ei">🏋️</span><span class="el">Full Gym</span></button>
     <button class="ebtn" data-v="body" onclick="pick('e',this)"><span class="ei">🤸</span><span class="el">Body Weight</span></button>
     <button class="ebtn" data-v="db"   onclick="pick('e',this)"><span class="ei">🏃</span><span class="el">Dumbbells</span></button>
   </div>
- 
+
   <div class="lbl">Workout duration</div>
   <div class="dur-row">
     <button class="dbtn" data-v="15" onclick="pick('d',this)">15 min</button>
@@ -116,15 +113,15 @@ Copy
     <button class="dbtn" data-v="45" onclick="pick('d',this)">45 min</button>
     <button class="dbtn" data-v="60" onclick="pick('d',this)">60 min</button>
   </div>
- 
+
   <div class="hint" id="hint">⚠️ Please select a goal, muscle group(s), equipment, and duration.</div>
   <button class="genbtn" onclick="generate()">⚡ Generate Today's Workout</button>
   <div class="out" id="out"></div>
 </div>
- 
+
 <script>
 document.getElementById('hdate').textContent = new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
- 
+
 function pick(g,btn){
   document.querySelectorAll(g==='g'?'.gbtn':g==='e'?'.ebtn':'.dbtn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
@@ -138,7 +135,7 @@ function getG(){return(document.querySelector('.gbtn.on')||{dataset:{}}).dataset
 function getE(){return(document.querySelector('.ebtn.on')||{dataset:{}}).dataset.v}
 function getD(){return parseInt((document.querySelector('.dbtn.on')||{dataset:{}}).dataset.v)||0}
 function getM(){return Array.from(document.querySelectorAll('#chips .chip.on')).map(b=>b.dataset.v)}
- 
+
 // ── Exercise library (14+ per category for maximum daily variety) ─────────────
 const EX={
   gym:{
@@ -178,7 +175,7 @@ const EX={
     "Cardio":     ["Dumbbell Thruster","Dumbbell Swing","Burpee","Mountain Climber","Jump Squat","High Knees","Jumping Jacks","Dumbbell Clean","Dumbbell Snatch","Jump Rope","Lateral Shuffle","Tuck Jump","Broad Jump","Dumbbell Push Press","Jumping Lunge","Star Jump"]
   }
 };
- 
+
 // ── YouTube video links (direct watch URLs — opens YouTube in Safari/app) ────
 const YT = {
   "Barbell Bench Press":"rT7DgCr-3pg","Incline Dumbbell Press":"8iPEnn-ltC8",
@@ -242,21 +239,21 @@ const YT = {
   "Power Clean":"op9kVnSso6Q","Dumbbell Clean":"op9kVnSso6Q",
   "Jumping Jacks":"c4DAnQ6DtF8"
 };
- 
+
 function getYT(name) {
   if (YT[name]) return 'https://www.youtube.com/watch?v=' + YT[name];
   // fallback: YouTube search
   return 'https://www.youtube.com/results?search_query=' + encodeURIComponent(name + ' exercise tutorial');
 }
- 
+
 // ── Tips ──────────────────────────────────────────────────────────────────────
 const TIPS={"Barbell Bench Press":"Arch naturally, leg drive, lower to mid-chest","Incline Dumbbell Press":"30° incline, full stretch at bottom, drive to lockout","Incline Bench Press":"Targets upper chest — control the descent","Dumbbell Chest Press":"Lower to mid-chest, explosive press","Dumbbell Floor Press":"Press to lockout, pause at floor each rep","Dumbbell Chest Fly":"Slight elbow bend, deep stretch, squeeze at top","Cable Chest Fly":"Long arc, slight elbow bend, squeeze hard at top","Dumbbell Pullover":"Keep core tight, feel the lat and chest stretch","Dips":"Lean forward to hit chest, go below 90°","Push-Up":"Chest to floor, full lockout, squeeze at top","Wide Push-Up":"Hands wider — more chest activation","Diamond Push-Up":"Elbows close — triceps are the main mover","Decline Push-Up":"Feet elevated — loads upper chest","Incline Push-Up":"Hands elevated — reduces difficulty","Pike Push-Up":"Hips high, lower head toward floor","Plyometric Push-Up":"Explosive off the floor — power training","Close Grip Push-Up":"Elbows close, tricep focus","Deadlift":"Brace hard, push floor away, lock hips at top","Bent Over Row":"Hinge 45°, pull elbow past hip, retract scapula","Lat Pulldown":"Pull to upper chest, lean back slightly","Seated Cable Row":"Chest to pad, elbows past body","Pull-Up":"Dead hang, chin over bar, slow negative","Chin-Up":"Supinated grip — more bicep and lat activation","Single Arm Row":"Elbow past hip, don't rotate hips","Dumbbell Row":"Drive elbow to ceiling, brief hold at top","Face Pull":"High anchor, pull to forehead, elbows high","Superman":"Hold 2s at top, squeeze glutes and lower back","Back Extension":"Rise controlled, squeeze glutes at top","Inverted Row":"Body straight, pull chest to bar","Bodyweight Row":"Body straight, pull chest to bar","Bear Crawl":"Opposite arm-leg, hips low and level","Renegade Row":"Plank tight, minimize hip rotation","Overhead Press":"Full lockout, brace core, squeeze glutes","Dumbbell Shoulder Press":"Press to full extension, control descent","Lateral Raise":"Lead with elbows, slight bend, don't shrug","Front Raise":"Slow up, even slower down","Arnold Press":"Rotate palms out as you press","Rear Delt Fly":"Hinge forward, lead with elbows out","Dumbbell Shrug":"Shrug straight up, hold 1s at top","Barbell Bicep Curl":"Full range, supinate at top, slow negative","Dumbbell Bicep Curl":"Alternate arms, supinate at top, slow down","EZ Bar Curl":"Less wrist strain, full contraction at top","Hammer Curl":"Neutral grip — hits brachialis for thickness","Concentration Curl":"Elbow on thigh, full ROM, peak squeeze","Reverse Curl":"Pronated grip — works brachioradialis","Tricep Pushdown":"Elbows fixed to sides, full extension","Skull Crusher":"Lower to forehead, elbows stay tucked","Overhead Tricep Extension":"Elbows stay forward, full stretch at bottom","Tricep Kickback":"Hinge forward, upper arm parallel to floor","Tricep Dip":"Elbows point back, lower fully, lock out","Plank":"Full body tight — squeeze everything","Side Plank":"Hip off floor, squeeze core and glutes","Russian Twist":"Rotate fully each side, control speed","Hanging Leg Raise":"Control swing, raise legs to 90°","Leg Raise":"Lower back pressed down, slow descent","Decline Sit-Up":"Full range, don't yank the neck","Bicycle Crunch":"Full shoulder rotation — not just elbow to knee","Mountain Climber":"Drive knees fast, keep hips level","Flutter Kick":"Small kicks, lower back to floor","Dead Bug":"Opposite arm-leg extend, spine neutral","Hollow Hold":"Lower back flat, legs low, arms overhead","Sit-Up":"Full range of motion each rep","Barbell Squat":"Break parallel, brace hard, drive knees out","Squat":"Feet shoulder-width, knees out, break parallel","Dumbbell Squat":"Dumbbells at sides or shoulders, full range","Goblet Squat":"Elbows inside knees at bottom, chest up","Jump Squat":"Land softly, absorb with knees, rebound","Sumo Squat":"Wide stance, toes out, drop between heels","Bulgarian Split Squat":"Back foot elevated, front knee tracks toes","Lunge":"Long step, front shin vertical, back knee hovers","Walking Lunge":"Long stride, upright torso, continuous","Dumbbell Lunge":"Long stride, upright torso","Reverse Lunge":"Step back, torso upright, front knee stable","Curtsy Lunge":"Step behind and across, upright torso","Step Up":"Drive through heel of working leg","Box Jump":"Explosive jump, soft landing, step down","Leg Press":"Full range, don't lock knees","Leg Curl":"Full contraction, slow negative","Leg Extension":"Full extension, hold 1s, slow eccentric","Calf Raise":"Heel below platform, pause hard at top","Hip Thrust":"Full hip extension, squeeze hard","Dumbbell Hip Thrust":"Upper back on bench, dumbbell on hips","Glute Bridge":"Feet flat, drive hips high, hold 1s","Single Leg Glute Bridge":"One foot up, drive with working leg","Cable Glute Kickback":"Kick back to parallel, squeeze at top","Donkey Kick":"Kick leg up, glute squeeze at top","Fire Hydrant":"Lift knee to side, stable hips","Good Morning":"Hinge from hips, keep back flat","Romanian Deadlift":"Hinge from hips, feel hamstring stretch","Dumbbell Romanian Deadlift":"Hinge to feel stretch, drive hips through","Single Leg RDL":"Hinge on one leg, feel hamstring, hold balance","Nordic Curl":"Feet anchored, lower as slowly as possible","Stiff Leg Deadlift":"Minimal knee bend, max hamstring stretch","Kettlebell Swing":"Hinge and drive hips — NOT a squat","Burpee":"Full burpee — jump at top, chest to floor","High Knees":"Drive knees to waist, pump arms hard","Thruster":"Squat deep then drive into overhead press","Plank Shoulder Tap":"Hips still — alternate taps, resist rotation"};
 function getTip(n){const l=(n||'').toLowerCase();for(const[k,v]of Object.entries(TIPS)){if(k.toLowerCase()===l)return v;}for(const[k,v]of Object.entries(TIPS)){if(l.includes(k.toLowerCase()))return v;}return'Focus on form and full range of motion.'}
- 
+
 // ── RNG ───────────────────────────────────────────────────────────────────────
 function makeRng(seed){let s=seed>>>0;return()=>{s=(Math.imul(1664525,s)+1013904223)>>>0;return s/4294967296}}
 function pickN(arr,n,rand){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a.slice(0,n)}
- 
+
 // ── Meta ──────────────────────────────────────────────────────────────────────
 const META={
   tone:    {titles:["Sculpt Session","Definition Day","Lean & Tone","Tighten Up","Shape & Define","Tone Circuit","Body Sculpt"],focuses:["Sculpt & Tone","Definition Work","Toning Circuit","Shape & Firm","Lean Muscle"],notes:["Consistency builds the body you want.","Light weights, full control — that's where definition lives.","Every rep reshapes. Stay intentional.","The burn means it's working.","Small weights, big results."]},
@@ -286,24 +283,24 @@ function getParams(goal,dur,rand){
   return{sets,reps:`${15+Math.floor(r*6)}-${18+Math.floor(r*6)}`,rest:'30s'};
 }
 function numEx(dur){return dur<=15?3:dur<=30?4:dur<=45?6:8}
- 
+
 // ── Generate ──────────────────────────────────────────────────────────────────
 function generate(){
   const goal=getG(),equip=getE(),muscles=getM(),dur=getD();
   const hint=document.getElementById('hint');
   if(!goal||!equip||!dur||!muscles.length){hint.style.display='block';return;}
   hint.style.display='none';
- 
+
   const doy=Math.floor((Date.now()-new Date(new Date().getFullYear(),0,0))/86400000);
   const muscleKey=[...muscles].sort().join(',');
   let hash=0;for(const c of(goal+equip+muscleKey+dur))hash=(Math.imul(31,hash)+c.charCodeAt(0))>>>0;
   const seed=(hash+doy*999983)>>>0;
   const rand=makeRng(seed);
- 
+
   let pool=[];muscles.forEach(m=>{pool=pool.concat(EX[equip][m]||EX[equip]['Full Body'])});
   pool=[...new Set(pool)];
   const main=pickN(pool,Math.min(numEx(dur),pool.length),rand);
- 
+
   const m=META[goal];
   const wu=WARMUPS[equip];
   const w={
@@ -315,7 +312,7 @@ function generate(){
     main:main.map(name=>({name,...getParams(goal,dur,rand),tip:getTip(name)})),
     cooldown:COOLDOWNS[Math.floor(rand()*COOLDOWNS.length)]
   };
- 
+
   const el=document.getElementById('out');
   el.innerHTML=`
     <div class="w-hdr">
@@ -332,7 +329,7 @@ function generate(){
   el.style.display='block';
   setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),80);
 }
- 
+
 function sec(title,icon,color,items,type){
   return`<div class="sec">
     <div class="sechd"><span style="font-size:14px">${icon}</span><span class="secttl" style="color:${color}">${title}</span><div class="secline"></div></div>
@@ -355,7 +352,7 @@ function sec(title,icon,color,items,type){
     }).join('')}
   </div>`;
 }
- 
+
 function x(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 </script>
 </body>
