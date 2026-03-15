@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;border:none;outline:none;-webkit-tap-highlight-color:transparent}
+  [role="button"]{cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
   a{-webkit-tap-highlight-color:transparent}
 
 /* ── Fixed light theme ── */
@@ -56,34 +56,34 @@ body{background:var(–bg);color:var(–txt);font-family:‘DM Serif Display’,
 
 /* Goal buttons */
 .goal-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.gbtn{padding:16px 10px;border-radius:14px;background:var(–orange-lt);color:var(–txt) !important;border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:600;text-align:center;transition:all .16s;display:flex;flex-direction:column;align-items:center;gap:6px;-webkit-appearance:none}
+.gbtn{padding:16px 10px;border-radius:14px;background:var(–orange-lt);color:var(–txt);border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:600;text-align:center;transition:all .16s;display:flex;flex-direction:column;align-items:center;gap:6px}
 .gbtn .gi{font-size:22px}
 .gbtn:active{background:var(–orange-md)}
-.gbtn.on{background:var(–orange);color:#ffffff !important;border-color:var(–orange);box-shadow:0 4px 18px #FF6B0025}
+.gbtn.on{background:var(–orange);color:#ffffff;border-color:var(–orange);box-shadow:0 4px 18px #FF6B0025}
 
 /* Muscle chips */
 .chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip{padding:7px 14px;border-radius:20px;background:var(–orange-lt);color:var(–txt) !important;border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:600;transition:all .14s;-webkit-appearance:none}
+.chip{padding:7px 14px;border-radius:20px;background:var(–orange-lt);color:var(–txt);border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:600;transition:all .14s}
 .chip:active{background:var(–orange-md)}
-.chip.on{background:var(–orange);color:#ffffff !important;border-color:var(–orange)}
+.chip.on{background:var(–orange);color:#ffffff;border-color:var(–orange)}
 
 /* Equipment */
 .eq-row{display:flex;gap:9px}
-.ebtn{flex:1;padding:14px 6px;border-radius:14px;background:var(–orange-lt);color:var(–txt) !important;border:1.5px solid transparent;transition:all .16s;display:flex;flex-direction:column;align-items:center;gap:5px;-webkit-appearance:none}
+.ebtn{flex:1;padding:14px 6px;border-radius:14px;background:var(–orange-lt);color:var(–txt);border:1.5px solid transparent;transition:all .16s;display:flex;flex-direction:column;align-items:center;gap:5px}
 .ebtn .ei{font-size:22px}
 .ebtn .el{font-family:‘DM Mono’,monospace;font-size:10px;font-weight:600}
-.ebtn.on{background:var(–orange);color:#ffffff !important;border-color:var(–orange);box-shadow:0 4px 14px #FF6B0022}
+.ebtn.on{background:var(–orange);color:#ffffff;border-color:var(–orange);box-shadow:0 4px 14px #FF6B0022}
 
 /* Duration */
 .dur-row{display:flex;gap:8px}
-.dbtn{flex:1;padding:12px 4px;border-radius:12px;background:var(–orange-lt);color:var(–txt) !important;border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:700;text-align:center;transition:all .15s;-webkit-appearance:none}
-.dbtn.on{background:var(–orange);color:#ffffff !important;border-color:var(–orange);box-shadow:0 3px 12px #FF6B0022}
+.dbtn{flex:1;padding:12px 4px;border-radius:12px;background:var(–orange-lt);color:var(–txt);border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:700;text-align:center;transition:all .15s}
+.dbtn.on{background:var(–orange);color:#ffffff;border-color:var(–orange);box-shadow:0 3px 12px #FF6B0022}
 
 /* Hint */
 .hint{font-family:‘DM Mono’,monospace;font-size:11px;color:var(–hint-c);margin-top:10px;display:none;text-align:center}
 
 /* Generate button — solid black */
-.genbtn{width:100%;padding:18px;background:#111111;border:none;border-radius:14px;color:#ffffff !important;font-size:14px;font-weight:700;letter-spacing:.1em;font-family:‘DM Mono’,monospace;text-transform:uppercase;box-shadow:0 4px 20px #00000018;margin-top:22px;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .16s;-webkit-appearance:none}
+.genbtn{width:100%;padding:18px;background:#111111;border:none;border-radius:14px;color:#ffffff;font-size:14px;font-weight:700;letter-spacing:.1em;font-family:‘DM Mono’,monospace;text-transform:uppercase;box-shadow:0 4px 20px #00000018;margin-top:22px;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .16s}
 .genbtn:active{background:#2a2a2a;transform:translateY(1px)}
 
 /* Output */
@@ -145,45 +145,45 @@ body{background:var(–bg);color:var(–txt);font-family:‘DM Serif Display’,
 <div class="wrap">
   <div class="lbl">What's your goal?</div>
   <div class="goal-grid">
-    <button class="gbtn" data-v="tone"     onclick="pick('g',this)"><span class="gi">✨</span>Tone &amp; Firm</button>
-    <button class="gbtn" data-v="muscle"   onclick="pick('g',this)"><span class="gi">💪</span>Build Muscle</button>
-    <button class="gbtn" data-v="strength" onclick="pick('g',this)"><span class="gi">🏋️</span>Increase Strength</button>
-    <button class="gbtn" data-v="fat"      onclick="pick('g',this)"><span class="gi">🔥</span>Burn Fat</button>
+    <div class="gbtn" data-v="tone"     onclick="pick('g',this)" role="button"><span class="gi">✨</span>Tone &amp; Firm</div>
+    <div class="gbtn" data-v="muscle"   onclick="pick('g',this)" role="button"><span class="gi">💪</span>Build Muscle</div>
+    <div class="gbtn" data-v="strength" onclick="pick('g',this)" role="button"><span class="gi">🏋️</span>Increase Strength</div>
+    <div class="gbtn" data-v="fat"      onclick="pick('g',this)" role="button"><span class="gi">🔥</span>Burn Fat</div>
   </div>
 
   <div class="lbl">Target muscles <span class="chip-hint">(tap one or more)</span></div>
   <div class="chips" id="chips">
-    <button class="chip" data-v="Full Body"  onclick="toggleChip(this)">Full Body</button>
-    <button class="chip" data-v="Chest"      onclick="toggleChip(this)">Chest</button>
-    <button class="chip" data-v="Back"       onclick="toggleChip(this)">Back</button>
-    <button class="chip" data-v="Shoulders"  onclick="toggleChip(this)">Shoulders</button>
-    <button class="chip" data-v="Arms"       onclick="toggleChip(this)">Arms</button>
-    <button class="chip" data-v="Core"       onclick="toggleChip(this)">Core</button>
-    <button class="chip" data-v="Glutes"     onclick="toggleChip(this)">Glutes</button>
-    <button class="chip" data-v="Legs"       onclick="toggleChip(this)">Legs</button>
-    <button class="chip" data-v="Hamstrings" onclick="toggleChip(this)">Hamstrings</button>
-    <button class="chip" data-v="Cardio"     onclick="toggleChip(this)">Cardio</button>
+    <div class="chip" data-v="Full Body"  onclick="toggleChip(this)" role="button">Full Body</div>
+    <div class="chip" data-v="Chest"      onclick="toggleChip(this)" role="button">Chest</div>
+    <div class="chip" data-v="Back"       onclick="toggleChip(this)" role="button">Back</div>
+    <div class="chip" data-v="Shoulders"  onclick="toggleChip(this)" role="button">Shoulders</div>
+    <div class="chip" data-v="Arms"       onclick="toggleChip(this)" role="button">Arms</div>
+    <div class="chip" data-v="Core"       onclick="toggleChip(this)" role="button">Core</div>
+    <div class="chip" data-v="Glutes"     onclick="toggleChip(this)" role="button">Glutes</div>
+    <div class="chip" data-v="Legs"       onclick="toggleChip(this)" role="button">Legs</div>
+    <div class="chip" data-v="Hamstrings" onclick="toggleChip(this)" role="button">Hamstrings</div>
+    <div class="chip" data-v="Cardio"     onclick="toggleChip(this)" role="button">Cardio</div>
   </div>
 
   <div class="lbl">Equipment</div>
   <div class="eq-row">
-    <button class="ebtn" data-v="gym"  onclick="pick('e',this)"><span class="ei">🏋️</span><span class="el">Full Gym</span></button>
-    <button class="ebtn" data-v="body" onclick="pick('e',this)"><span class="ei">🤸</span><span class="el">Body Weight</span></button>
-    <button class="ebtn" data-v="db"   onclick="pick('e',this)"><span class="ei">🏃</span><span class="el">Dumbbells</span></button>
+    <div class="ebtn" data-v="gym"  onclick="pick('e',this)" role="button"><span class="ei">🏋️</span><span class="el">Full Gym</span></div>
+    <div class="ebtn" data-v="body" onclick="pick('e',this)" role="button"><span class="ei">🤸</span><span class="el">Body Weight</span></div>
+    <div class="ebtn" data-v="db"   onclick="pick('e',this)" role="button"><span class="ei">🏃</span><span class="el">Dumbbells</span></div>
   </div>
 
   <div class="lbl">Workout duration</div>
   <div class="dur-row">
-    <button class="dbtn" data-v="15" onclick="pick('d',this)">15 min</button>
-    <button class="dbtn" data-v="30" onclick="pick('d',this)">30 min</button>
-    <button class="dbtn" data-v="45" onclick="pick('d',this)">45 min</button>
-    <button class="dbtn" data-v="60" onclick="pick('d',this)">60 min</button>
+    <div class="dbtn" data-v="15" onclick="pick('d',this)" role="button">15 min</div>
+    <div class="dbtn" data-v="30" onclick="pick('d',this)" role="button">30 min</div>
+    <div class="dbtn" data-v="45" onclick="pick('d',this)" role="button">45 min</div>
+    <div class="dbtn" data-v="60" onclick="pick('d',this)" role="button">60 min</div>
   </div>
 
   <div class="hint" id="hint">⚠️ Please select a goal, muscle group(s), equipment, and duration.</div>
   <div style="display:flex;gap:9px;margin-top:20px">
-    <button class="genbtn" style="margin-top:0" onclick="generate(false)">⚡ Today's Workout</button>
-    <button class="genbtn" style="margin-top:0;flex:0 0 auto;width:54px;font-size:20px;padding:17px 0;letter-spacing:0" onclick="generate(true)" title="Shuffle">🔀</button>
+    <div class="genbtn" style="margin-top:0" onclick="generate(false)" role="button">⚡ Today's Workout</div>
+    <div class="genbtn" style="margin-top:0;flex:0 0 auto;width:54px;font-size:20px;padding:17px 0;letter-spacing:0" onclick="generate(true)" role="button" title="Shuffle">🔀</div>
   </div>
   <div class="out" id="out"></div>
 </div>
