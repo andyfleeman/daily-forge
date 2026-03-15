@@ -18,13 +18,14 @@
 body{background:#ffffff;color:#111111;font-family:‘DM Serif Display’,Georgia,serif;min-height:100vh;padding-bottom:80px;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
 
 /* Header */
-.hdr{background:#ffffff;border-bottom:2px solid #EEE2D8;padding:26px 20px 20px;text-align:center;position:relative;overflow:hidden}
-.hdr::before{content:’’;position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,232,214,0.5),transparent 65%);pointer-events:none}
-.htag{font-family:‘DM Mono’,monospace;font-size:23px;letter-spacing:.28em;color:#111111;text-transform:uppercase;font-weight:700}
-.htag span{color:#FF6B00}
-.htag-bar{width:40px;height:3px;background:#FF6B00;border-radius:2px;margin:7px auto 0}
+.hdr{background:#FF6B00;border-bottom:none;padding:26px 20px 22px;text-align:center;position:relative;overflow:hidden}
+.hdr::before{content:’’;position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.12),transparent 65%);pointer-events:none}
+.hdr::after{content:’’;position:absolute;bottom:-20px;left:-20px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,0.08),transparent 65%);pointer-events:none}
+.htag{font-family:‘DM Mono’,monospace;font-size:23px;letter-spacing:.28em;color:#ffffff;text-transform:uppercase;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,0.15)}
+.htag span{color:#ffffff;opacity:1}
+.htag-bar{width:40px;height:3px;background:rgba(255,255,255,0.5);border-radius:2px;margin:7px auto 0}
 .hdr h1{display:none}
-.hdate{font-family:‘DM Mono’,monospace;font-size:11px;color:#666666;margin-top:5px;letter-spacing:.08em;font-weight:500}
+.hdate{font-family:‘DM Mono’,monospace;font-size:11px;color:rgba(255,255,255,0.82);margin-top:5px;letter-spacing:.08em;font-weight:500}
 
 /* Layout */
 .wrap{max-width:520px;margin:0 auto;padding:22px 16px 40px}
@@ -62,8 +63,8 @@ body{background:#ffffff;color:#111111;font-family:‘DM Serif Display’,Georgia
 .hint{font-family:‘DM Mono’,monospace;font-size:11px;color:#CC3300;margin-top:10px;display:none;text-align:center;font-weight:600}
 
 /* Generate button */
-.genbtn{width:100%;padding:18px;background:#111111;border:none;border-radius:14px;color:#ffffff;font-size:14px;font-weight:700;letter-spacing:.1em;font-family:‘DM Mono’,monospace;text-transform:uppercase;box-shadow:0 4px 20px rgba(0,0,0,0.1);margin-top:22px;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .16s}
-.genbtn:active{background:#2a2a2a;transform:translateY(1px)}
+.genbtn{width:100%;padding:18px;background:#FF6B00;border:none;border-radius:14px;color:#ffffff;font-size:14px;font-weight:700;letter-spacing:.1em;font-family:‘DM Mono’,monospace;text-transform:uppercase;box-shadow:0 4px 20px rgba(255,107,0,0.35);margin-top:22px;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .16s}
+.genbtn:active{background:#E55A00;transform:translateY(1px)}
 
 /* Output */
 .out{display:none;margin-top:28px}
@@ -115,7 +116,7 @@ body{background:#ffffff;color:#111111;font-family:‘DM Serif Display’,Georgia
 <body>
 
 <div class="hdr">
-  <div class="htag">Daily <span>⚡</span> Forge</div>
+  <div class="htag">Daily <span style="display:inline-block;background:rgba(0,0,0,0.18);border-radius:6px;padding:0 4px;margin:0 2px;line-height:1.2">⚡</span> Forge</div>
   <div class="htag-bar"></div>
   <h1 style="display:none">Daily Forge</h1>
   <div class="hdate" id="hdate"></div>
