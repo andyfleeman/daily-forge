@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Daily Forge">
 <meta name="theme-color" content="#ffffff">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   [role="button"]{cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
@@ -24,41 +24,42 @@ body{background:#ffffff;color:#111111;font-family:‘DM Serif Display’,Georgia
 .htag span{color:#FF6B00}
 .htag-bar{width:40px;height:3px;background:#FF6B00;border-radius:2px;margin:7px auto 0}
 .hdr h1{display:none}
-.hdate{font-family:‘DM Mono’,monospace;font-size:11px;color:#999999;margin-top:5px;letter-spacing:.08em}
+.hdate{font-family:‘DM Mono’,monospace;font-size:11px;color:#666666;margin-top:5px;letter-spacing:.08em;font-weight:500}
 
 /* Layout */
 .wrap{max-width:520px;margin:0 auto;padding:22px 16px 40px}
-.lbl{font-family:‘DM Mono’,monospace;font-size:10px;letter-spacing:.22em;color:#999999;text-transform:uppercase;margin-bottom:10px;margin-top:22px;display:flex;align-items:center;gap:10px}
+.lbl{font-family:‘DM Mono’,monospace;font-size:10px;letter-spacing:.22em;color:#555555;font-weight:700;text-transform:uppercase;margin-bottom:10px;margin-top:22px;display:flex;align-items:center;gap:10px}
 .lbl::after{content:’’;flex:1;height:1px;background:#EEE2D8}
 .lbl:first-child{margin-top:0}
 
 /* Goal buttons */
 .goal-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.gbtn{padding:16px 10px;border-radius:14px;background:#FFE8D6;color:#111111;border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:600;text-align:center;transition:all .16s;display:flex;flex-direction:column;align-items:center;gap:6px}
+.gbtn{padding:16px 10px;border-radius:14px;background:#FFE8D6;color:#1a1a1a;border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:700;text-align:center;transition:all .16s;display:flex;flex-direction:column;align-items:center;gap:6px}
 .gbtn .gi{font-size:22px}
 .gbtn:active{background:#FFD4B0}
 .gbtn.on{background:#FF6B00;color:#ffffff;border-color:#FF6B00;box-shadow:0 4px 18px rgba(255,107,0,0.15)}
 
 /* Muscle chips */
 .chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip{padding:7px 14px;border-radius:20px;background:#FFE8D6;color:#111111;border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:600;transition:all .14s}
+.chip{padding:7px 14px;border-radius:20px;background:#FFE8D6;color:#1a1a1a;border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:700;transition:all .14s}
 .chip:active{background:#FFD4B0}
 .chip.on{background:#FF6B00;color:#ffffff;border-color:#FF6B00}
 
 /* Equipment */
 .eq-row{display:flex;gap:9px}
-.ebtn{flex:1;padding:14px 6px;border-radius:14px;background:#FFE8D6;color:#111111;border:1.5px solid transparent;transition:all .16s;display:flex;flex-direction:column;align-items:center;gap:5px}
+.ebtn{flex:1;padding:14px 6px;border-radius:14px;background:#FFE8D6;color:#1a1a1a;border:1.5px solid transparent;transition:all .16s;display:flex;flex-direction:column;align-items:center;gap:5px}
 .ebtn .ei{font-size:22px}
-.ebtn .el{font-family:‘DM Mono’,monospace;font-size:10px;font-weight:600;color:#111111}
+.ebtn .el{font-family:‘DM Mono’,monospace;font-size:10px;font-weight:700;color:#1a1a1a}
 .ebtn.on{background:#FF6B00;color:#ffffff;border-color:#FF6B00;box-shadow:0 4px 14px rgba(255,107,0,0.13)}
+.ebtn.on .el{color:#ffffff}
 
 /* Duration */
 .dur-row{display:flex;gap:8px}
-.dbtn{flex:1;padding:12px 4px;border-radius:12px;background:#FFE8D6;color:#111111;border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:700;text-align:center;transition:all .15s}
+.dbtn{flex:1;padding:12px 4px;border-radius:12px;background:#FFE8D6;color:#1a1a1a;border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:700;text-align:center;transition:all .15s}
 .dbtn.on{background:#FF6B00;color:#ffffff;border-color:#FF6B00;box-shadow:0 3px 12px rgba(255,107,0,0.13)}
 
 /* Hint */
-.hint{font-family:‘DM Mono’,monospace;font-size:11px;color:#CC3300;margin-top:10px;display:none;text-align:center}
+.hint{font-family:‘DM Mono’,monospace;font-size:11px;color:#CC3300;margin-top:10px;display:none;text-align:center;font-weight:600}
 
 /* Generate button */
 .genbtn{width:100%;padding:18px;background:#111111;border:none;border-radius:14px;color:#ffffff;font-size:14px;font-weight:700;letter-spacing:.1em;font-family:‘DM Mono’,monospace;text-transform:uppercase;box-shadow:0 4px 20px rgba(0,0,0,0.1);margin-top:22px;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .16s}
@@ -71,42 +72,42 @@ body{background:#ffffff;color:#111111;font-family:‘DM Serif Display’,Georgia
 .w-hdr{border-radius:16px;padding:20px 20px 18px;margin-bottom:22px;position:relative;overflow:hidden;background:#111111;color:#ffffff}
 .w-hdr::before{content:’’;position:absolute;top:0;left:0;width:5px;height:100%;background:#FF6B00;border-radius:16px 0 0 16px}
 .w-hdr::after{content:’’;position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,0,0.13),transparent 70%);pointer-events:none}
-.wfocus{font-family:‘DM Mono’,monospace;font-size:10px;color:#FF6B00;letter-spacing:.22em;text-transform:uppercase;margin-bottom:5px}
+.wfocus{font-family:‘DM Mono’,monospace;font-size:10px;color:#FF6B00;letter-spacing:.22em;text-transform:uppercase;margin-bottom:5px;font-weight:700}
 .wtop{display:flex;justify-content:space-between;align-items:flex-start}
 .wtitle{font-size:20px;font-weight:700;color:#ffffff;line-height:1.2;flex:1;padding-right:10px}
-.durpill{border-radius:10px;padding:7px 12px;text-align:center;flex-shrink:0;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.13)}
+.durpill{border-radius:10px;padding:7px 12px;text-align:center;flex-shrink:0;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2)}
 .durpill-n{font-family:‘DM Mono’,monospace;font-size:15px;font-weight:700;color:#ffffff}
-.durpill-l{font-family:‘DM Mono’,monospace;font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:.15em;text-transform:uppercase}
-.wnote{margin-top:10px;font-size:13px;color:rgba(255,255,255,0.67);font-style:italic;line-height:1.5}
+.durpill-l{font-family:‘DM Mono’,monospace;font-size:9px;color:rgba(255,255,255,0.65);letter-spacing:.15em;text-transform:uppercase;font-weight:600}
+.wnote{margin-top:10px;font-size:13px;color:rgba(255,255,255,0.85);font-style:italic;line-height:1.5}
 
 /* Sections */
 .sec{margin-bottom:22px}
 .sechd{display:flex;align-items:center;gap:8px;margin-bottom:11px}
 .secline{flex:1;height:1px;background:#EEE2D8}
-.secttl{font-family:‘DM Mono’,monospace;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#C44D00}
+.secttl{font-family:‘DM Mono’,monospace;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#AA3A00}
 
 /* Exercise cards */
 .ex{background:#ffffff;border:1.5px solid #EEE2D8;border-radius:14px;margin-bottom:9px;overflow:hidden}
 .exb{padding:13px 15px 12px}
 .ext{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.exn{font-weight:600;color:#111111;font-size:14px;flex:1;line-height:1.3}
+.exn{font-weight:700;color:#111111;font-size:14px;flex:1;line-height:1.3}
 .pills{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end;margin-top:2px}
-.pill{border-radius:8px;padding:3px 9px;font-family:‘DM Mono’,monospace;font-size:10px;font-weight:600;white-space:nowrap}
-.pdim{background:#F5EDE6;border:1px solid #EEE2D8;color:#333333}
-.tip{margin-top:7px;font-size:11px;color:#777777;font-family:‘DM Mono’,monospace;line-height:1.5}
+.pill{border-radius:8px;padding:3px 9px;font-family:‘DM Mono’,monospace;font-size:10px;font-weight:700;white-space:nowrap}
+.pdim{background:#F5EDE6;border:1px solid #D8C4B0;color:#4a3520}
+.tip{margin-top:7px;font-size:11px;color:#555555;font-family:‘DM Mono’,monospace;line-height:1.5;font-weight:500}
 
 /* YouTube link */
-.yt-link{display:flex;align-items:center;gap:8px;padding:10px 15px;border-top:1.5px solid #EEE2D8;background:#FFFAF6;text-decoration:none;color:#C44D00;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:600;transition:background .14s}
+.yt-link{display:flex;align-items:center;gap:8px;padding:10px 15px;border-top:1.5px solid #EEE2D8;background:#FFF5EE;text-decoration:none;color:#AA3A00;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:700;transition:background .14s}
 .yt-link:active{background:#FFE8D6}
 .yt-icon{width:18px;height:13px;background:#FF0000;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .yt-icon::after{content:’’;border-left:7px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent;margin-left:1px}
 
 /* Chip hint */
-.chip-hint{color:#cccccc;font-size:9px;margin-left:2px}
+.chip-hint{color:#999999;font-size:9px;margin-left:2px;font-weight:500}
 
 /* Accent classes */
-.accent-txt{color:#C44D00}
-.pill-accent{background:#FFE8D6;border:1px solid #E0C8B0;color:#111111;font-weight:700}
+.accent-txt{color:#AA3A00}
+.pill-accent{background:#FFE8D6;border:1px solid #D8C4B0;color:#6b2a00;font-weight:700}
 .ex-accent{border-left:3px solid #FF6B00 !important}
 </style>
 
@@ -183,7 +184,6 @@ function getE(){return(document.querySelector('.ebtn.on')||{dataset:{}}).dataset
 function getD(){return parseInt((document.querySelector('.dbtn.on')||{dataset:{}}).dataset.v)||0}
 function getM(){return Array.from(document.querySelectorAll('#chips .chip.on')).map(b=>b.dataset.v)}
 
-// ── Exercise library (14+ per category for maximum daily variety) ─────────────
 const EX={
   gym:{
     "Full Body":  ["Barbell Squat","Deadlift","Bent Over Row","Barbell Bench Press","Overhead Press","Lunge","Pull-Up","Kettlebell Swing","Box Jump","Push-Up","Romanian Deadlift","Dips","Arnold Press","Hanging Leg Raise","Step Up","Face Pull"],
@@ -223,147 +223,17 @@ const EX={
   }
 };
 
-// ── YouTube links — short video filter (&sp=EgIYAQ%3D%3D = under 4 min) ────
-// Each query is tuned to surface the best short form demo for that exercise
 const YT_Q={
-  "Barbell Bench Press":"bench press proper form",
-  "Incline Dumbbell Press":"incline dumbbell press form",
-  "Incline Bench Press":"incline bench press form",
-  "Dumbbell Chest Press":"dumbbell bench press form",
-  "Dumbbell Floor Press":"dumbbell floor press form",
-  "Dumbbell Chest Fly":"dumbbell chest fly form",
-  "Cable Chest Fly":"cable chest fly form",
-  "Dumbbell Pullover":"dumbbell pullover form",
-  "Dips":"chest dips proper form",
-  "Tricep Dip":"tricep dips form",
-  "Push-Up":"push up proper form",
-  "Wide Push-Up":"wide push up form",
-  "Diamond Push-Up":"diamond push up form",
-  "Decline Push-Up":"decline push up form",
-  "Incline Push-Up":"incline push up form",
-  "Pike Push-Up":"pike push up form",
-  "Plyometric Push-Up":"clapping push up form",
-  "Close Grip Push-Up":"close grip push up form",
-  "Downward Dog Push-Up":"downward dog push up",
-  "Deadlift":"deadlift proper form tutorial",
-  "Bent Over Row":"bent over row proper form",
-  "Lat Pulldown":"lat pulldown proper form",
-  "Seated Cable Row":"seated cable row form",
-  "T-Bar Row":"t bar row form",
-  "Pull-Up":"pull up proper form",
-  "Chin-Up":"chin up proper form",
-  "Single Arm Row":"single arm dumbbell row form",
-  "Dumbbell Row":"dumbbell row form",
-  "Renegade Row":"renegade row form",
-  "Inverted Row":"inverted row form",
-  "Bodyweight Row":"bodyweight row form",
-  "Face Pull":"face pull form",
-  "Rack Pull":"rack pull form",
-  "Superman":"superman exercise form",
-  "Back Extension":"back extension form",
-  "Bear Crawl":"bear crawl form",
-  "Overhead Press":"overhead press proper form",
-  "Barbell Overhead Press":"overhead press proper form",
-  "Dumbbell Shoulder Press":"dumbbell shoulder press form",
-  "Lateral Raise":"lateral raise proper form",
-  "Front Raise":"dumbbell front raise form",
-  "Arnold Press":"arnold press form",
-  "Upright Row":"upright row form",
-  "Rear Delt Fly":"rear delt fly form",
-  "Dumbbell Shrug":"dumbbell shrug form",
-  "Plank Shoulder Tap":"plank shoulder tap form",
-  "Barbell Bicep Curl":"barbell curl proper form",
-  "Dumbbell Bicep Curl":"dumbbell bicep curl form",
-  "EZ Bar Curl":"ez bar curl form",
-  "Hammer Curl":"hammer curl form",
-  "Concentration Curl":"concentration curl form",
-  "Reverse Curl":"reverse curl form",
-  "Tricep Pushdown":"tricep pushdown form",
-  "Skull Crusher":"skull crusher form",
-  "Overhead Tricep Extension":"overhead tricep extension form",
-  "Tricep Kickback":"tricep kickback form",
-  "Plank":"plank proper form",
-  "Side Plank":"side plank form",
-  "Russian Twist":"russian twist form",
-  "Hanging Leg Raise":"hanging leg raise form",
-  "Leg Raise":"leg raise abs form",
-  "Decline Sit-Up":"decline sit up form",
-  "Bicycle Crunch":"bicycle crunch form",
-  "Mountain Climber":"mountain climbers form",
-  "Flutter Kick":"flutter kicks form",
-  "Dead Bug":"dead bug exercise form",
-  "Hollow Hold":"hollow hold form",
-  "Sit-Up":"sit up proper form",
-  "Ab Wheel Rollout":"ab wheel rollout form",
-  "Barbell Squat":"back squat proper form",
-  "Squat":"bodyweight squat proper form",
-  "Dumbbell Squat":"dumbbell squat form",
-  "Goblet Squat":"goblet squat form",
-  "Jump Squat":"jump squat form",
-  "Sumo Squat":"sumo squat form",
-  "Bulgarian Split Squat":"bulgarian split squat form",
-  "Wall Sit":"wall sit form",
-  "Lunge":"lunge proper form",
-  "Walking Lunge":"walking lunge form",
-  "Dumbbell Lunge":"dumbbell lunge form",
-  "Reverse Lunge":"reverse lunge form",
-  "Curtsy Lunge":"curtsy lunge form",
-  "Step Up":"step up exercise form",
-  "Box Jump":"box jump form",
-  "Leg Press":"leg press proper form",
-  "Leg Curl":"leg curl form",
-  "Leg Extension":"leg extension form",
-  "Calf Raise":"calf raise form",
-  "Hack Squat":"hack squat form",
-  "Box Squat":"box squat form",
-  "Hip Thrust":"hip thrust proper form",
-  "Dumbbell Hip Thrust":"dumbbell hip thrust form",
-  "Glute Bridge":"glute bridge form",
-  "Single Leg Glute Bridge":"single leg glute bridge form",
-  "Cable Glute Kickback":"cable glute kickback form",
-  "Donkey Kick":"donkey kick form",
-  "Fire Hydrant":"fire hydrant exercise form",
-  "Frog Pump":"frog pump exercise form",
-  "Good Morning":"good morning exercise form",
-  "Sumo Deadlift":"sumo deadlift proper form",
-  "Romanian Deadlift":"romanian deadlift proper form",
-  "Dumbbell Romanian Deadlift":"dumbbell rdl form",
-  "Single Leg RDL":"single leg rdl form",
-  "Nordic Curl":"nordic curl hamstring form",
-  "Glute Ham Raise":"glute ham raise form",
-  "Stiff Leg Deadlift":"stiff leg deadlift form",
-  "Hip Hinge":"hip hinge form tutorial",
-  "Dumbbell Deadlift":"dumbbell deadlift form",
-  "Burpee":"burpee proper form",
-  "High Knees":"high knees form",
-  "Kettlebell Swing":"kettlebell swing proper form",
-  "Dumbbell Swing":"dumbbell swing form",
-  "Thruster":"barbell thruster form",
-  "Dumbbell Thruster":"dumbbell thruster form",
-  "Jumping Jacks":"jumping jacks form",
-  "Power Clean":"power clean form tutorial",
-  "Dumbbell Clean":"dumbbell clean form",
-  "Jumping Lunge":"jumping lunge form",
-  "Lateral Shuffle":"lateral shuffle form",
-  "Tuck Jump":"tuck jump form",
-  "Star Jump":"star jump exercise form",
+  "Barbell Bench Press":"bench press proper form","Incline Dumbbell Press":"incline dumbbell press form","Incline Bench Press":"incline bench press form","Dumbbell Chest Press":"dumbbell bench press form","Dumbbell Floor Press":"dumbbell floor press form","Dumbbell Chest Fly":"dumbbell chest fly form","Cable Chest Fly":"cable chest fly form","Dumbbell Pullover":"dumbbell pullover form","Dips":"chest dips proper form","Tricep Dip":"tricep dips form","Push-Up":"push up proper form","Wide Push-Up":"wide push up form","Diamond Push-Up":"diamond push up form","Decline Push-Up":"decline push up form","Incline Push-Up":"incline push up form","Pike Push-Up":"pike push up form","Plyometric Push-Up":"clapping push up form","Close Grip Push-Up":"close grip push up form","Downward Dog Push-Up":"downward dog push up","Deadlift":"deadlift proper form tutorial","Bent Over Row":"bent over row proper form","Lat Pulldown":"lat pulldown proper form","Seated Cable Row":"seated cable row form","T-Bar Row":"t bar row form","Pull-Up":"pull up proper form","Chin-Up":"chin up proper form","Single Arm Row":"single arm dumbbell row form","Dumbbell Row":"dumbbell row form","Renegade Row":"renegade row form","Inverted Row":"inverted row form","Bodyweight Row":"bodyweight row form","Face Pull":"face pull form","Rack Pull":"rack pull form","Superman":"superman exercise form","Back Extension":"back extension form","Bear Crawl":"bear crawl form","Overhead Press":"overhead press proper form","Barbell Overhead Press":"overhead press proper form","Dumbbell Shoulder Press":"dumbbell shoulder press form","Lateral Raise":"lateral raise proper form","Front Raise":"dumbbell front raise form","Arnold Press":"arnold press form","Upright Row":"upright row form","Rear Delt Fly":"rear delt fly form","Dumbbell Shrug":"dumbbell shrug form","Plank Shoulder Tap":"plank shoulder tap form","Barbell Bicep Curl":"barbell curl proper form","Dumbbell Bicep Curl":"dumbbell bicep curl form","EZ Bar Curl":"ez bar curl form","Hammer Curl":"hammer curl form","Concentration Curl":"concentration curl form","Reverse Curl":"reverse curl form","Tricep Pushdown":"tricep pushdown form","Skull Crusher":"skull crusher form","Overhead Tricep Extension":"overhead tricep extension form","Tricep Kickback":"tricep kickback form","Plank":"plank proper form","Side Plank":"side plank form","Russian Twist":"russian twist form","Hanging Leg Raise":"hanging leg raise form","Leg Raise":"leg raise abs form","Decline Sit-Up":"decline sit up form","Bicycle Crunch":"bicycle crunch form","Mountain Climber":"mountain climbers form","Flutter Kick":"flutter kicks form","Dead Bug":"dead bug exercise form","Hollow Hold":"hollow hold form","Sit-Up":"sit up proper form","Ab Wheel Rollout":"ab wheel rollout form","Barbell Squat":"back squat proper form","Squat":"bodyweight squat proper form","Dumbbell Squat":"dumbbell squat form","Goblet Squat":"goblet squat form","Jump Squat":"jump squat form","Sumo Squat":"sumo squat form","Bulgarian Split Squat":"bulgarian split squat form","Wall Sit":"wall sit form","Lunge":"lunge proper form","Walking Lunge":"walking lunge form","Dumbbell Lunge":"dumbbell lunge form","Reverse Lunge":"reverse lunge form","Curtsy Lunge":"curtsy lunge form","Step Up":"step up exercise form","Box Jump":"box jump form","Leg Press":"leg press proper form","Leg Curl":"leg curl form","Leg Extension":"leg extension form","Calf Raise":"calf raise form","Hack Squat":"hack squat form","Box Squat":"box squat form","Hip Thrust":"hip thrust proper form","Dumbbell Hip Thrust":"dumbbell hip thrust form","Glute Bridge":"glute bridge form","Single Leg Glute Bridge":"single leg glute bridge form","Cable Glute Kickback":"cable glute kickback form","Donkey Kick":"donkey kick form","Fire Hydrant":"fire hydrant exercise form","Frog Pump":"frog pump exercise form","Good Morning":"good morning exercise form","Sumo Deadlift":"sumo deadlift proper form","Romanian Deadlift":"romanian deadlift proper form","Dumbbell Romanian Deadlift":"dumbbell rdl form","Single Leg RDL":"single leg rdl form","Nordic Curl":"nordic curl hamstring form","Glute Ham Raise":"glute ham raise form","Stiff Leg Deadlift":"stiff leg deadlift form","Hip Hinge":"hip hinge form tutorial","Dumbbell Deadlift":"dumbbell deadlift form","Burpee":"burpee proper form","High Knees":"high knees form","Kettlebell Swing":"kettlebell swing proper form","Dumbbell Swing":"dumbbell swing form","Thruster":"barbell thruster form","Dumbbell Thruster":"dumbbell thruster form","Jumping Jacks":"jumping jacks form","Power Clean":"power clean form tutorial","Dumbbell Clean":"dumbbell clean form","Jumping Lunge":"jumping lunge form","Lateral Shuffle":"lateral shuffle form","Tuck Jump":"tuck jump form","Star Jump":"star jump exercise form"
 };
+function getYT(name){const q=YT_Q[name]||(name+' exercise form');return'https://www.youtube.com/results?search_query='+encodeURIComponent(q)+'&sp=EgIYAQ%3D%3D';}
 
-// YouTube short video filter: &sp=EgIYAQ%3D%3D = "Under 4 minutes"
-function getYT(name){
-  const q=YT_Q[name]||(name+' exercise form');
-  return'https://www.youtube.com/results?search_query='+encodeURIComponent(q)+'&sp=EgIYAQ%3D%3D';
-}
-
-// ── Tips ──────────────────────────────────────────────────────────────────────
 const TIPS={"Barbell Bench Press":"Arch naturally, leg drive, lower to mid-chest","Incline Dumbbell Press":"30° incline, full stretch at bottom, drive to lockout","Incline Bench Press":"Targets upper chest — control the descent","Dumbbell Chest Press":"Lower to mid-chest, explosive press","Dumbbell Floor Press":"Press to lockout, pause at floor each rep","Dumbbell Chest Fly":"Slight elbow bend, deep stretch, squeeze at top","Cable Chest Fly":"Long arc, slight elbow bend, squeeze hard at top","Dumbbell Pullover":"Keep core tight, feel the lat and chest stretch","Dips":"Lean forward to hit chest, go below 90°","Push-Up":"Chest to floor, full lockout, squeeze at top","Wide Push-Up":"Hands wider — more chest activation","Diamond Push-Up":"Elbows close — triceps are the main mover","Decline Push-Up":"Feet elevated — loads upper chest","Incline Push-Up":"Hands elevated — reduces difficulty","Pike Push-Up":"Hips high, lower head toward floor","Plyometric Push-Up":"Explosive off the floor — power training","Close Grip Push-Up":"Elbows close, tricep focus","Deadlift":"Brace hard, push floor away, lock hips at top","Bent Over Row":"Hinge 45°, pull elbow past hip, retract scapula","Lat Pulldown":"Pull to upper chest, lean back slightly","Seated Cable Row":"Chest to pad, elbows past body","Pull-Up":"Dead hang, chin over bar, slow negative","Chin-Up":"Supinated grip — more bicep and lat activation","Single Arm Row":"Elbow past hip, don't rotate hips","Dumbbell Row":"Drive elbow to ceiling, brief hold at top","Face Pull":"High anchor, pull to forehead, elbows high","Superman":"Hold 2s at top, squeeze glutes and lower back","Back Extension":"Rise controlled, squeeze glutes at top","Inverted Row":"Body straight, pull chest to bar","Bodyweight Row":"Body straight, pull chest to bar","Bear Crawl":"Opposite arm-leg, hips low and level","Renegade Row":"Plank tight, minimize hip rotation","Overhead Press":"Full lockout, brace core, squeeze glutes","Dumbbell Shoulder Press":"Press to full extension, control descent","Lateral Raise":"Lead with elbows, slight bend, don't shrug","Front Raise":"Slow up, even slower down","Arnold Press":"Rotate palms out as you press","Rear Delt Fly":"Hinge forward, lead with elbows out","Dumbbell Shrug":"Shrug straight up, hold 1s at top","Barbell Bicep Curl":"Full range, supinate at top, slow negative","Dumbbell Bicep Curl":"Alternate arms, supinate at top, slow down","EZ Bar Curl":"Less wrist strain, full contraction at top","Hammer Curl":"Neutral grip — hits brachialis for thickness","Concentration Curl":"Elbow on thigh, full ROM, peak squeeze","Reverse Curl":"Pronated grip — works brachioradialis","Tricep Pushdown":"Elbows fixed to sides, full extension","Skull Crusher":"Lower to forehead, elbows stay tucked","Overhead Tricep Extension":"Elbows stay forward, full stretch at bottom","Tricep Kickback":"Hinge forward, upper arm parallel to floor","Tricep Dip":"Elbows point back, lower fully, lock out","Plank":"Full body tight — squeeze everything","Side Plank":"Hip off floor, squeeze core and glutes","Russian Twist":"Rotate fully each side, control speed","Hanging Leg Raise":"Control swing, raise legs to 90°","Leg Raise":"Lower back pressed down, slow descent","Decline Sit-Up":"Full range, don't yank the neck","Bicycle Crunch":"Full shoulder rotation — not just elbow to knee","Mountain Climber":"Drive knees fast, keep hips level","Flutter Kick":"Small kicks, lower back to floor","Dead Bug":"Opposite arm-leg extend, spine neutral","Hollow Hold":"Lower back flat, legs low, arms overhead","Sit-Up":"Full range of motion each rep","Barbell Squat":"Break parallel, brace hard, drive knees out","Squat":"Feet shoulder-width, knees out, break parallel","Dumbbell Squat":"Dumbbells at sides or shoulders, full range","Goblet Squat":"Elbows inside knees at bottom, chest up","Jump Squat":"Land softly, absorb with knees, rebound","Sumo Squat":"Wide stance, toes out, drop between heels","Bulgarian Split Squat":"Back foot elevated, front knee tracks toes","Lunge":"Long step, front shin vertical, back knee hovers","Walking Lunge":"Long stride, upright torso, continuous","Dumbbell Lunge":"Long stride, upright torso","Reverse Lunge":"Step back, torso upright, front knee stable","Curtsy Lunge":"Step behind and across, upright torso","Step Up":"Drive through heel of working leg","Box Jump":"Explosive jump, soft landing, step down","Leg Press":"Full range, don't lock knees","Leg Curl":"Full contraction, slow negative","Leg Extension":"Full extension, hold 1s, slow eccentric","Calf Raise":"Heel below platform, pause hard at top","Hip Thrust":"Full hip extension, squeeze hard","Dumbbell Hip Thrust":"Upper back on bench, dumbbell on hips","Glute Bridge":"Feet flat, drive hips high, hold 1s","Single Leg Glute Bridge":"One foot up, drive with working leg","Cable Glute Kickback":"Kick back to parallel, squeeze at top","Donkey Kick":"Kick leg up, glute squeeze at top","Fire Hydrant":"Lift knee to side, stable hips","Good Morning":"Hinge from hips, keep back flat","Romanian Deadlift":"Hinge from hips, feel hamstring stretch","Dumbbell Romanian Deadlift":"Hinge to feel stretch, drive hips through","Single Leg RDL":"Hinge on one leg, feel hamstring, hold balance","Nordic Curl":"Feet anchored, lower as slowly as possible","Stiff Leg Deadlift":"Minimal knee bend, max hamstring stretch","Kettlebell Swing":"Hinge and drive hips — NOT a squat","Burpee":"Full burpee — jump at top, chest to floor","High Knees":"Drive knees to waist, pump arms hard","Thruster":"Squat deep then drive into overhead press","Plank Shoulder Tap":"Hips still — alternate taps, resist rotation"};
 function getTip(n){const l=(n||'').toLowerCase();for(const[k,v]of Object.entries(TIPS)){if(k.toLowerCase()===l)return v;}for(const[k,v]of Object.entries(TIPS)){if(l.includes(k.toLowerCase()))return v;}return'Focus on form and full range of motion.'}
 
-// ── RNG ───────────────────────────────────────────────────────────────────────
 function makeRng(seed){let s=seed>>>0;return()=>{s=(Math.imul(1664525,s)+1013904223)>>>0;return s/4294967296}}
 function pickN(arr,n,rand){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a.slice(0,n)}
 
-// ── Meta ──────────────────────────────────────────────────────────────────────
 const META={
   tone:    {titles:["Sculpt Session","Definition Day","Lean & Tone","Tighten Up","Shape & Define","Tone Circuit","Body Sculpt"],focuses:["Sculpt & Tone","Definition Work","Toning Circuit","Shape & Firm","Lean Muscle"],notes:["Consistency builds the body you want.","Light weights, full control — that's where definition lives.","Every rep reshapes. Stay intentional.","The burn means it's working.","Small weights, big results."]},
   muscle:  {titles:["Mass Builder","Hypertrophy Day","Size & Strength","Growth Session","Volume Push","Gainz Protocol"],focuses:["Hypertrophy","Muscle Growth","Size Protocol","Volume Day","Mass Building"],notes:["Progressive overload is the only way.","Big lifts build big bodies. No shortcuts.","Volume builds muscle. Earn every set.","Track your weights — beat them next time.","You grow during rest, but only if you earned it."]},
@@ -371,12 +241,9 @@ const META={
   fat:     {titles:["Fat Furnace","Metabolic Blast","Burn Circuit","HIIT Session","Torch Time","Calorie Crusher"],focuses:["Fat Burn","Metabolic Burn","Cardio Strength","HIIT Circuit","Calorie Torch"],notes:["Maximum effort, minimum rest.","Burn more, rest less. Keep that heart rate up.","Heart pounding, lungs burning — that's the goal.","Sweat is just fat crying. Keep going.","Every second of effort counts."]}
 };
 const WARMUPS={
-  gym: [[{n:"Treadmill Walk",d:"3 min",t:"Incline 4, open the hips"},{n:"Arm Circles + Leg Swings",d:"2 min",t:"Full range — front, back, across"}],
-        [{n:"Rowing Machine",d:"3 min",t:"Easy pace, open the chest"},{n:"Hip Circles",d:"2 min",t:"Slow big circles"}]],
-  body:[[{n:"Jumping Jacks",d:"2 min",t:"Full body warm-up"},{n:"Leg Swings",d:"2 min",t:"Front-back and side-to-side"}],
-        [{n:"High Knees",d:"2 min",t:"Drive knees to waist height"},{n:"Inchworm",d:"2 min",t:"Walk hands out to plank and back"}]],
-  db:  [[{n:"Arm Swings",d:"2 min",t:"Cross-body and overhead"},{n:"Squat to Stand",d:"2 min",t:"Hands behind head, mobility warm-up"}],
-        [{n:"High Knees",d:"2 min",t:"Get blood moving"},{n:"Shoulder Rolls",d:"2 min",t:"Forward and back, full range"}]]
+  gym: [[{n:"Treadmill Walk",d:"3 min",t:"Incline 4, open the hips"},{n:"Arm Circles + Leg Swings",d:"2 min",t:"Full range — front, back, across"}],[{n:"Rowing Machine",d:"3 min",t:"Easy pace, open the chest"},{n:"Hip Circles",d:"2 min",t:"Slow big circles"}]],
+  body:[[{n:"Jumping Jacks",d:"2 min",t:"Full body warm-up"},{n:"Leg Swings",d:"2 min",t:"Front-back and side-to-side"}],[{n:"High Knees",d:"2 min",t:"Drive knees to waist height"},{n:"Inchworm",d:"2 min",t:"Walk hands out to plank and back"}]],
+  db:  [[{n:"Arm Swings",d:"2 min",t:"Cross-body and overhead"},{n:"Squat to Stand",d:"2 min",t:"Hands behind head, mobility warm-up"}],[{n:"High Knees",d:"2 min",t:"Get blood moving"},{n:"Shoulder Rolls",d:"2 min",t:"Forward and back, full range"}]]
 };
 const COOLDOWNS=[
   [{n:"Hip Flexor Stretch",d:"2 min",t:"Lunge position, tuck pelvis, 30s each"},{n:"Hamstring Stretch",d:"2 min",t:"Seated, flat back, lean forward"},{n:"Child's Pose",d:"1 min",t:"Wide knees, arms extended, breathe"}],
@@ -393,27 +260,22 @@ function getParams(goal,dur,rand){
 }
 function numEx(dur){return dur<=15?3:dur<=30?4:dur<=45?6:8}
 
-// ── Generate ──────────────────────────────────────────────────────────────────
-let shuffleCount = 0;
+let shuffleCount=0;
 
 function generate(shuffle){
   const goal=getG(),equip=getE(),muscles=getM(),dur=getD();
   const hint=document.getElementById('hint');
   if(!goal||!equip||!dur||!muscles.length){hint.style.display='block';return;}
   hint.style.display='none';
-
   if(shuffle) shuffleCount++;
-
   const doy=Math.floor((Date.now()-new Date(new Date().getFullYear(),0,0))/86400000);
   const muscleKey=[...muscles].sort().join(',');
   let hash=0;for(const c of(goal+equip+muscleKey+dur))hash=(Math.imul(31,hash)+c.charCodeAt(0))>>>0;
   const seed=(hash+(doy+shuffleCount*7919)*999983)>>>0;
   const rand=makeRng(seed);
-
   let pool=[];muscles.forEach(m=>{pool=pool.concat(EX[equip][m]||EX[equip]['Full Body'])});
   pool=[...new Set(pool)];
   const main=pickN(pool,Math.min(numEx(dur),pool.length),rand);
-
   const m=META[goal];
   const wu=WARMUPS[equip];
   const w={
@@ -425,7 +287,6 @@ function generate(shuffle){
     main:main.map(name=>({name,...getParams(goal,dur,rand),tip:getTip(name)})),
     cooldown:COOLDOWNS[Math.floor(rand()*COOLDOWNS.length)]
   };
-
   const el=document.getElementById('out');
   el.innerHTML=`
     <div class="w-hdr">
@@ -447,11 +308,9 @@ function sec(title,icon,color,items,type){
   return`<div class="sec">
     <div class="sechd"><span style="font-size:14px">${icon}</span><span class="secttl accent-txt">${title}</span><div class="secline"></div></div>
     ${(items||[]).map((item)=>{
-      const name=item.name||item.n, tip=item.tip||item.t, dur2=item.duration||item.d;
+      const name=item.name||item.n,tip=item.tip||item.t,dur2=item.duration||item.d;
       const pills=type==='s'
-        ?`<span class="pill pill-accent">${x(item.sets)} sets</span>
-          <span class="pill pill-accent">${x(item.reps)} reps</span>
-          ${item.rest?`<span class="pill pdim">rest ${x(item.rest)}</span>`:''}`
+        ?`<span class="pill pill-accent">${x(item.sets)} sets</span><span class="pill pill-accent">${x(item.reps)} reps</span>${item.rest?`<span class="pill pdim">rest ${x(item.rest)}</span>`:''}`
         :`<span class="pill pill-accent">${x(dur2)}</span>`;
       return`<div class="ex ex-accent">
         <div class="exb">
