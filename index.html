@@ -12,6 +12,8 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;border:none;outline:none;-webkit-tap-highlight-color:transparent}
+  a{-webkit-tap-highlight-color:transparent}
 
 /* ── Fixed light theme ── */
 :root{
@@ -35,8 +37,7 @@
 –wnote:     #555555;
 }
 
-body{background:var(–bg);color:var(–txt);font-family:‘DM Serif Display’,Georgia,serif;min-height:100vh;padding-bottom:80px;-webkit-tap-highlight-color:transparent}
-button{font-family:inherit;cursor:pointer;border:none;outline:none}
+body{background:var(–bg);color:var(–txt);font-family:‘DM Serif Display’,Georgia,serif;min-height:100vh;padding-bottom:80px;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
 
 /* Header */
 .hdr{background:#ffffff;border-bottom:2px solid var(–bdr);padding:26px 20px 20px;text-align:center;position:relative;overflow:hidden}
@@ -55,34 +56,34 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none}
 
 /* Goal buttons */
 .goal-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.gbtn{padding:16px 10px;border-radius:14px;background:var(–orange-lt);color:var(–txt);border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:600;text-align:center;transition:all .16s;display:flex;flex-direction:column;align-items:center;gap:6px}
+.gbtn{padding:16px 10px;border-radius:14px;background:var(–orange-lt);color:var(–txt) !important;border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:600;text-align:center;transition:all .16s;display:flex;flex-direction:column;align-items:center;gap:6px;-webkit-appearance:none}
 .gbtn .gi{font-size:22px}
 .gbtn:active{background:var(–orange-md)}
-.gbtn.on{background:var(–orange);color:#ffffff;border-color:var(–orange);box-shadow:0 4px 18px #FF6B0025}
+.gbtn.on{background:var(–orange);color:#ffffff !important;border-color:var(–orange);box-shadow:0 4px 18px #FF6B0025}
 
 /* Muscle chips */
 .chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip{padding:7px 14px;border-radius:20px;background:var(–orange-lt);color:var(–txt);border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:600;transition:all .14s}
+.chip{padding:7px 14px;border-radius:20px;background:var(–orange-lt);color:var(–txt) !important;border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:600;transition:all .14s;-webkit-appearance:none}
 .chip:active{background:var(–orange-md)}
-.chip.on{background:var(–orange);color:#ffffff;border-color:var(–orange)}
+.chip.on{background:var(–orange);color:#ffffff !important;border-color:var(–orange)}
 
 /* Equipment */
 .eq-row{display:flex;gap:9px}
-.ebtn{flex:1;padding:14px 6px;border-radius:14px;background:var(–orange-lt);color:var(–txt);border:1.5px solid transparent;transition:all .16s;display:flex;flex-direction:column;align-items:center;gap:5px}
+.ebtn{flex:1;padding:14px 6px;border-radius:14px;background:var(–orange-lt);color:var(–txt) !important;border:1.5px solid transparent;transition:all .16s;display:flex;flex-direction:column;align-items:center;gap:5px;-webkit-appearance:none}
 .ebtn .ei{font-size:22px}
 .ebtn .el{font-family:‘DM Mono’,monospace;font-size:10px;font-weight:600}
-.ebtn.on{background:var(–orange);color:#ffffff;border-color:var(–orange);box-shadow:0 4px 14px #FF6B0022}
+.ebtn.on{background:var(–orange);color:#ffffff !important;border-color:var(–orange);box-shadow:0 4px 14px #FF6B0022}
 
 /* Duration */
 .dur-row{display:flex;gap:8px}
-.dbtn{flex:1;padding:12px 4px;border-radius:12px;background:var(–orange-lt);color:var(–txt);border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:700;text-align:center;transition:all .15s}
-.dbtn.on{background:var(–orange);color:#ffffff;border-color:var(–orange);box-shadow:0 3px 12px #FF6B0022}
+.dbtn{flex:1;padding:12px 4px;border-radius:12px;background:var(–orange-lt);color:var(–txt) !important;border:1.5px solid transparent;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:700;text-align:center;transition:all .15s;-webkit-appearance:none}
+.dbtn.on{background:var(–orange);color:#ffffff !important;border-color:var(–orange);box-shadow:0 3px 12px #FF6B0022}
 
 /* Hint */
 .hint{font-family:‘DM Mono’,monospace;font-size:11px;color:var(–hint-c);margin-top:10px;display:none;text-align:center}
 
 /* Generate button — solid black */
-.genbtn{width:100%;padding:18px;background:#111111;border:none;border-radius:14px;color:#ffffff;font-size:14px;font-weight:700;letter-spacing:.1em;font-family:‘DM Mono’,monospace;text-transform:uppercase;box-shadow:0 4px 20px #00000018;margin-top:22px;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .16s}
+.genbtn{width:100%;padding:18px;background:#111111;border:none;border-radius:14px;color:#ffffff !important;font-size:14px;font-weight:700;letter-spacing:.1em;font-family:‘DM Mono’,monospace;text-transform:uppercase;box-shadow:0 4px 20px #00000018;margin-top:22px;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .16s;-webkit-appearance:none}
 .genbtn:active{background:#2a2a2a;transform:translateY(1px)}
 
 /* Output */
