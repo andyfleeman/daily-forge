@@ -63,24 +63,10 @@
   .pill{border-radius:7px;padding:3px 8px;font-family:'DM Mono',monospace;font-size:10px;font-weight:600;white-space:nowrap}
   .pdim{background:#ffffff07;border:1px solid #2a2a3a;color:#555}
   .tip{margin-top:7px;font-size:11px;color:#555;font-family:'DM Mono',monospace;line-height:1.5}
-  /* Exercise action buttons */
-  .ex-actions{display:flex;border-top:1px solid var(--bdr)}
-  .yt-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 8px;background:transparent;border:none;border-right:1px solid var(--bdr);color:#ff4444;font-family:'DM Mono',monospace;font-size:11px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .15s}
-  .yt-btn:active{background:#ff000010}
-  .yt-icon{width:16px;height:11px;background:#ff0000;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .yt-icon::after{content:'';border-left:6px solid #fff;border-top:3px solid transparent;border-bottom:3px solid transparent;margin-left:1px}
-  /* Video modal */
-  .modal-overlay{display:none;position:fixed;inset:0;background:#000000cc;z-index:999;align-items:flex-end;justify-content:center}
-  .modal-overlay.open{display:flex}
-  .modal-sheet{background:#0e0e1a;width:100%;max-width:540px;border-radius:18px 18px 0 0;overflow:hidden;animation:slideUp .25s ease}
-  @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-  .modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;border-bottom:1px solid var(--bdr)}
-  .modal-title{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:#ccc}
-  .modal-close{background:var(--bdr);border:none;color:#888;font-size:18px;width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
-  .modal-body{padding:0}
-  .modal-ratio{position:relative;padding-bottom:56.25%;height:0;background:#000}
-  .modal-ratio iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
-  .modal-note{padding:10px 14px;font-family:'DM Mono',monospace;font-size:10px;color:#444;text-align:center}
+  .yt-link{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid var(--bdr);background:transparent;text-decoration:none;color:#ff4444;font-family:'DM Mono',monospace;font-size:11px;font-weight:600;transition:background .15s}
+  .yt-link:hover,.yt-link:active{background:#ff000010}
+  .yt-icon{width:18px;height:13px;background:#ff0000;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .yt-icon::after{content:'';border-left:7px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent;margin-left:1px}
 </style>
 </head>
 <body>
@@ -89,23 +75,6 @@
   <div class="htag">⚡ Daily Forge</div>
   <h1>Daily Forge</h1>
   <div class="hdate" id="hdate"></div>
-</div>
-
-<!-- Video Modal -->
-
-<div class="modal-overlay" id="vid-modal" onclick="closeModal(event)">
-  <div class="modal-sheet">
-    <div class="modal-hdr">
-      <span class="modal-title" id="modal-title">Exercise Tutorial</span>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-ratio">
-        <iframe id="modal-frame" src="" title="Exercise tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="modal-note">Tap ✕ to return to your workout</div>
-    </div>
-  </div>
 </div>
 
 <div class="wrap">
@@ -162,6 +131,8 @@ function pick(g,btn){
   btn.classList.add('on');
 }
 function toggleChip(btn){
+  const on=document.querySelectorAll('#chips .chip.on');
+  if(btn.classList.contains('on')&&on.length===1)return;
   btn.classList.toggle('on');
 }
 function getG(){return(document.querySelector('.gbtn.on')||{dataset:{}}).dataset.v}
@@ -209,74 +180,136 @@ const EX={
   }
 };
 
-// ── YouTube video links (direct watch URLs — opens YouTube in Safari/app) ────
-const YT = {
-  "Barbell Bench Press":"rT7DgCr-3pg","Incline Dumbbell Press":"8iPEnn-ltC8",
-  "Incline Bench Press":"8iPEnn-ltC8","Dumbbell Chest Press":"QsYre9I8LNM",
-  "Dumbbell Floor Press":"QsYre9I8LNM","Dumbbell Chest Fly":"eozdVDA78K0",
-  "Cable Chest Fly":"eozdVDA78K0","Dumbbell Pullover":"FK4rHSFHfSk",
-  "Dips":"2z8JmcrW-As","Tricep Dip":"0326dy_-CzM",
-  "Push-Up":"IODxDxX7oi4","Wide Push-Up":"IODxDxX7oi4",
-  "Diamond Push-Up":"J0DXe_MxAAQ","Decline Push-Up":"IODxDxX7oi4",
-  "Incline Push-Up":"IODxDxX7oi4","Pike Push-Up":"pkOw5GVzRpg",
-  "Plyometric Push-Up":"IODxDxX7oi4","Close Grip Push-Up":"J0DXe_MxAAQ",
-  "Deadlift":"op9kVnSso6Q","Sumo Deadlift":"op9kVnSso6Q",
-  "Dumbbell Deadlift":"op9kVnSso6Q","Stiff Leg Deadlift":"JCXUYuzwNrM",
-  "Bent Over Row":"FWJR5Ve8bnQ","Dumbbell Row":"pYcpY20QaE8",
-  "Single Arm Row":"pYcpY20QaE8","T-Bar Row":"FWJR5Ve8bnQ",
-  "Renegade Row":"Pn-WZSdHxJQ","Inverted Row":"gnt3JDMmZOU",
-  "Bodyweight Row":"gnt3JDMmZOU","Pull-Up":"eGo4IYlbE5g",
-  "Chin-Up":"eGo4IYlbE5g","Lat Pulldown":"lueqMFm8vHg",
-  "Seated Cable Row":"GZbfZ033f74","Face Pull":"HSoHeSt0gKs",
-  "Rack Pull":"op9kVnSso6Q","Superman":"cc3zBalCHBk",
-  "Back Extension":"cc3zBalCHBk","Bear Crawl":"E-RLO_FIlNo",
-  "Overhead Press":"2yjwXTZQDDI","Barbell Overhead Press":"2yjwXTZQDDI",
-  "Dumbbell Shoulder Press":"qEwKCR5JCog","Lateral Raise":"kDqklHXFG-g",
-  "Front Raise":"_nqoVtiU_kI","Arnold Press":"6Z15_WdXmVw",
-  "Upright Row":"VhvSFlUPD6I","Rear Delt Fly":"HSoHeSt0gKs",
-  "Dumbbell Shrug":"VhvSFlUPD6I","Plank Shoulder Tap":"pSHjTRCQxIw",
-  "Barbell Bicep Curl":"kwG2ipFRgfo","Dumbbell Bicep Curl":"av7-8igSXTs",
-  "EZ Bar Curl":"kwG2ipFRgfo","Hammer Curl":"TwD-YGVP4Bk",
-  "Concentration Curl":"0AqJe_oAIkc","Reverse Curl":"kwG2ipFRgfo",
-  "Tricep Pushdown":"vB5OHsJ3EME","Skull Crusher":"d_KZxkY_0cM",
-  "Overhead Tricep Extension":"_gsUck7B2MQ","Tricep Kickback":"_gsUck7B2MQ",
-  "Plank":"pSHjTRCQxIw","Side Plank":"pSHjTRCQxIw",
-  "Russian Twist":"JyyvI_e3cEo","Hanging Leg Raise":"Pr5-Xmpwp-g",
-  "Leg Raise":"Pr5-Xmpwp-g","Decline Sit-Up":"jDwoBqPH0jk",
-  "Bicycle Crunch":"9FGilxCbdz8","Mountain Climber":"nmwgirgXLYM",
-  "Flutter Kick":"Pr5-Xmpwp-g","Dead Bug":"pSHjTRCQxIw",
-  "Hollow Hold":"pSHjTRCQxIw","Sit-Up":"jDwoBqPH0jk",
-  "Ab Wheel Rollout":"p7_g4YlpMGE",
-  "Barbell Squat":"ultWZbUMPL8","Squat":"ultWZbUMPL8",
-  "Dumbbell Squat":"ultWZbUMPL8","Goblet Squat":"MeIiIdhvXT4",
-  "Jump Squat":"CVaEhXotL7M","Sumo Squat":"9-HqTCMPnpM",
-  "Box Squat":"ultWZbUMPL8","Hack Squat":"ultWZbUMPL8",
-  "Bulgarian Split Squat":"2C-uNgKwPLE","Wall Sit":"ultWZbUMPL8",
-  "Lunge":"QOVaHwm-Q6U","Walking Lunge":"QOVaHwm-Q6U",
-  "Dumbbell Lunge":"QOVaHwm-Q6U","Reverse Lunge":"QOVaHwm-Q6U",
-  "Curtsy Lunge":"QOVaHwm-Q6U","Step Up":"dQqApCGd5Ss",
-  "Box Jump":"52r_Ul5k03g","Leg Press":"IZxyjW7MPJQ",
-  "Leg Curl":"4K-SjnCuMkc","Leg Extension":"YyvSfVjQeL0",
-  "Calf Raise":"gwLzBJYoWlQ",
-  "Hip Thrust":"SEdqd1n0cvg","Dumbbell Hip Thrust":"SEdqd1n0cvg",
-  "Glute Bridge":"8bbE64NuDTU","Single Leg Glute Bridge":"8bbE64NuDTU",
-  "Cable Glute Kickback":"SJ4S4hFVTBE","Donkey Kick":"SJ4S4hFVTBE",
-  "Fire Hydrant":"eeEGTzb-jXs","Frog Pump":"8bbE64NuDTU",
-  "Good Morning":"YA-h3n9L4Ko",
-  "Romanian Deadlift":"JCXUYuzwNrM","Dumbbell Romanian Deadlift":"JCXUYuzwNrM",
-  "Single Leg RDL":"JCXUYuzwNrM","Nordic Curl":"bCDNBpPFQAY",
-  "Glute Ham Raise":"JCXUYuzwNrM","Hip Hinge":"op9kVnSso6Q",
-  "Burpee":"dZgVxmf6jkA","High Knees":"tx5rgpGhyGo",
-  "Kettlebell Swing":"YSxHifyI6s8","Dumbbell Swing":"YSxHifyI6s8",
-  "Thruster":"ultWZbUMPL8","Dumbbell Thruster":"ultWZbUMPL8",
-  "Power Clean":"op9kVnSso6Q","Dumbbell Clean":"op9kVnSso6Q",
-  "Jumping Jacks":"c4DAnQ6DtF8"
+// ── YouTube links — short video filter (&sp=EgIYAQ%3D%3D = under 4 min) ────
+// Each query is tuned to surface the best short form demo for that exercise
+const YT_Q={
+  "Barbell Bench Press":"bench press proper form",
+  "Incline Dumbbell Press":"incline dumbbell press form",
+  "Incline Bench Press":"incline bench press form",
+  "Dumbbell Chest Press":"dumbbell bench press form",
+  "Dumbbell Floor Press":"dumbbell floor press form",
+  "Dumbbell Chest Fly":"dumbbell chest fly form",
+  "Cable Chest Fly":"cable chest fly form",
+  "Dumbbell Pullover":"dumbbell pullover form",
+  "Dips":"chest dips proper form",
+  "Tricep Dip":"tricep dips form",
+  "Push-Up":"push up proper form",
+  "Wide Push-Up":"wide push up form",
+  "Diamond Push-Up":"diamond push up form",
+  "Decline Push-Up":"decline push up form",
+  "Incline Push-Up":"incline push up form",
+  "Pike Push-Up":"pike push up form",
+  "Plyometric Push-Up":"clapping push up form",
+  "Close Grip Push-Up":"close grip push up form",
+  "Downward Dog Push-Up":"downward dog push up",
+  "Deadlift":"deadlift proper form tutorial",
+  "Bent Over Row":"bent over row proper form",
+  "Lat Pulldown":"lat pulldown proper form",
+  "Seated Cable Row":"seated cable row form",
+  "T-Bar Row":"t bar row form",
+  "Pull-Up":"pull up proper form",
+  "Chin-Up":"chin up proper form",
+  "Single Arm Row":"single arm dumbbell row form",
+  "Dumbbell Row":"dumbbell row form",
+  "Renegade Row":"renegade row form",
+  "Inverted Row":"inverted row form",
+  "Bodyweight Row":"bodyweight row form",
+  "Face Pull":"face pull form",
+  "Rack Pull":"rack pull form",
+  "Superman":"superman exercise form",
+  "Back Extension":"back extension form",
+  "Bear Crawl":"bear crawl form",
+  "Overhead Press":"overhead press proper form",
+  "Barbell Overhead Press":"overhead press proper form",
+  "Dumbbell Shoulder Press":"dumbbell shoulder press form",
+  "Lateral Raise":"lateral raise proper form",
+  "Front Raise":"dumbbell front raise form",
+  "Arnold Press":"arnold press form",
+  "Upright Row":"upright row form",
+  "Rear Delt Fly":"rear delt fly form",
+  "Dumbbell Shrug":"dumbbell shrug form",
+  "Plank Shoulder Tap":"plank shoulder tap form",
+  "Barbell Bicep Curl":"barbell curl proper form",
+  "Dumbbell Bicep Curl":"dumbbell bicep curl form",
+  "EZ Bar Curl":"ez bar curl form",
+  "Hammer Curl":"hammer curl form",
+  "Concentration Curl":"concentration curl form",
+  "Reverse Curl":"reverse curl form",
+  "Tricep Pushdown":"tricep pushdown form",
+  "Skull Crusher":"skull crusher form",
+  "Overhead Tricep Extension":"overhead tricep extension form",
+  "Tricep Kickback":"tricep kickback form",
+  "Plank":"plank proper form",
+  "Side Plank":"side plank form",
+  "Russian Twist":"russian twist form",
+  "Hanging Leg Raise":"hanging leg raise form",
+  "Leg Raise":"leg raise abs form",
+  "Decline Sit-Up":"decline sit up form",
+  "Bicycle Crunch":"bicycle crunch form",
+  "Mountain Climber":"mountain climbers form",
+  "Flutter Kick":"flutter kicks form",
+  "Dead Bug":"dead bug exercise form",
+  "Hollow Hold":"hollow hold form",
+  "Sit-Up":"sit up proper form",
+  "Ab Wheel Rollout":"ab wheel rollout form",
+  "Barbell Squat":"back squat proper form",
+  "Squat":"bodyweight squat proper form",
+  "Dumbbell Squat":"dumbbell squat form",
+  "Goblet Squat":"goblet squat form",
+  "Jump Squat":"jump squat form",
+  "Sumo Squat":"sumo squat form",
+  "Bulgarian Split Squat":"bulgarian split squat form",
+  "Wall Sit":"wall sit form",
+  "Lunge":"lunge proper form",
+  "Walking Lunge":"walking lunge form",
+  "Dumbbell Lunge":"dumbbell lunge form",
+  "Reverse Lunge":"reverse lunge form",
+  "Curtsy Lunge":"curtsy lunge form",
+  "Step Up":"step up exercise form",
+  "Box Jump":"box jump form",
+  "Leg Press":"leg press proper form",
+  "Leg Curl":"leg curl form",
+  "Leg Extension":"leg extension form",
+  "Calf Raise":"calf raise form",
+  "Hack Squat":"hack squat form",
+  "Box Squat":"box squat form",
+  "Hip Thrust":"hip thrust proper form",
+  "Dumbbell Hip Thrust":"dumbbell hip thrust form",
+  "Glute Bridge":"glute bridge form",
+  "Single Leg Glute Bridge":"single leg glute bridge form",
+  "Cable Glute Kickback":"cable glute kickback form",
+  "Donkey Kick":"donkey kick form",
+  "Fire Hydrant":"fire hydrant exercise form",
+  "Frog Pump":"frog pump exercise form",
+  "Good Morning":"good morning exercise form",
+  "Sumo Deadlift":"sumo deadlift proper form",
+  "Romanian Deadlift":"romanian deadlift proper form",
+  "Dumbbell Romanian Deadlift":"dumbbell rdl form",
+  "Single Leg RDL":"single leg rdl form",
+  "Nordic Curl":"nordic curl hamstring form",
+  "Glute Ham Raise":"glute ham raise form",
+  "Stiff Leg Deadlift":"stiff leg deadlift form",
+  "Hip Hinge":"hip hinge form tutorial",
+  "Dumbbell Deadlift":"dumbbell deadlift form",
+  "Burpee":"burpee proper form",
+  "High Knees":"high knees form",
+  "Kettlebell Swing":"kettlebell swing proper form",
+  "Dumbbell Swing":"dumbbell swing form",
+  "Thruster":"barbell thruster form",
+  "Dumbbell Thruster":"dumbbell thruster form",
+  "Jumping Jacks":"jumping jacks form",
+  "Power Clean":"power clean form tutorial",
+  "Dumbbell Clean":"dumbbell clean form",
+  "Jumping Lunge":"jumping lunge form",
+  "Lateral Shuffle":"lateral shuffle form",
+  "Tuck Jump":"tuck jump form",
+  "Star Jump":"star jump exercise form",
 };
 
-function getYT(name) {
-  if (YT[name]) return 'https://www.youtube.com/watch?v=' + YT[name];
-  // fallback: YouTube search
-  return 'https://www.youtube.com/results?search_query=' + encodeURIComponent(name + ' exercise tutorial');
+// YouTube short video filter: &sp=EgIYAQ%3D%3D = "Under 4 minutes"
+function getYT(name){
+  const q=YT_Q[name]||(name+' exercise form');
+  return'https://www.youtube.com/results?search_query='+encodeURIComponent(q)+'&sp=EgIYAQ%3D%3D';
 }
 
 // ── Tips ──────────────────────────────────────────────────────────────────────
@@ -323,13 +356,7 @@ let shuffleCount = 0;
 function generate(shuffle){
   const goal=getG(),equip=getE(),muscles=getM(),dur=getD();
   const hint=document.getElementById('hint');
-  if(!goal||!equip||!dur||!muscles.length){
-    hint.textContent = !muscles.length && goal && equip && dur
-      ? '💪 Select at least one muscle group to target.'
-      : '⚠️ Please select a goal, muscle group(s), equipment, and duration.';
-    hint.style.display='block';
-    return;
-  }
+  if(!goal||!equip||!dur||!muscles.length){hint.style.display='block';return;}
   hint.style.display='none';
 
   if(shuffle) shuffleCount++;
@@ -376,7 +403,7 @@ function generate(shuffle){
 function sec(title,icon,color,items,type){
   return`<div class="sec">
     <div class="sechd"><span style="font-size:14px">${icon}</span><span class="secttl" style="color:${color}">${title}</span><div class="secline"></div></div>
-    ${(items||[]).map((item,i)=>{
+    ${(items||[]).map((item)=>{
       const name=item.name||item.n, tip=item.tip||item.t, dur2=item.duration||item.d;
       const pills=type==='s'
         ?`<span class="pill" style="background:${color}18;border:1px solid ${color}44;color:${color}">${x(item.sets)} sets</span>
@@ -388,169 +415,13 @@ function sec(title,icon,color,items,type){
           <div class="ext"><span class="exn">${x(name)}</span><div class="pills">${pills}</div></div>
           ${tip?`<div class="tip">💡 ${x(tip)}</div>`:''}
         </div>
-        <div class="ex-actions">
-          <button class="yt-btn" onclick="openModal('${x(name).replace(/'/g,"\\'")}')">▶ Watch tutorial</button>
-          <a class="yt-btn" style="border-right:none;color:#ff4444" href="${getYTSearch(name)}" target="_blank" rel="noopener noreferrer"><span class="yt-icon"></span>YouTube</a>
-        </div>
+        <a class="yt-link" href="${getYT(name)}" target="_blank" rel="noopener noreferrer">
+          <span class="yt-icon"></span>Watch on YouTube
+        </a>
       </div>`;
     }).join('')}
   </div>`;
 }
-
-// ── YouTube search queries (precise, always correct) ───────────────────────
-const YT_Q={
-  "Barbell Bench Press":"barbell bench press how to proper form",
-  "Incline Dumbbell Press":"incline dumbbell press how to form tutorial",
-  "Incline Bench Press":"incline barbell bench press form tutorial",
-  "Dumbbell Chest Press":"dumbbell bench press how to form tutorial",
-  "Dumbbell Floor Press":"dumbbell floor press how to form",
-  "Dumbbell Chest Fly":"dumbbell chest fly how to form tutorial",
-  "Cable Chest Fly":"cable chest fly how to form tutorial",
-  "Dumbbell Pullover":"dumbbell pullover how to form tutorial",
-  "Dips":"chest dips how to form tutorial",
-  "Tricep Dip":"tricep dips how to form tutorial",
-  "Push-Up":"push up how to proper form tutorial",
-  "Wide Push-Up":"wide grip push up form tutorial",
-  "Diamond Push-Up":"diamond push up how to form",
-  "Decline Push-Up":"decline push up how to form",
-  "Incline Push-Up":"incline push up how to form",
-  "Pike Push-Up":"pike push up how to form tutorial",
-  "Plyometric Push-Up":"plyometric clap push up form tutorial",
-  "Close Grip Push-Up":"close grip push up how to form",
-  "Downward Dog Push-Up":"downward dog push up how to form",
-  "Deadlift":"conventional deadlift how to proper form tutorial",
-  "Bent Over Row":"barbell bent over row how to form tutorial",
-  "Lat Pulldown":"lat pulldown how to proper form tutorial",
-  "Seated Cable Row":"seated cable row how to form tutorial",
-  "T-Bar Row":"t-bar row how to form tutorial",
-  "Pull-Up":"pull up how to proper form tutorial",
-  "Chin-Up":"chin up how to form tutorial",
-  "Single Arm Row":"single arm dumbbell row how to form",
-  "Dumbbell Row":"dumbbell row how to form tutorial",
-  "Face Pull":"face pull cables how to form tutorial",
-  "Rack Pull":"rack pull how to form tutorial",
-  "Inverted Row":"inverted row bodyweight how to form",
-  "Bodyweight Row":"bodyweight row inverted row how to form",
-  "Superman":"superman back exercise how to form",
-  "Back Extension":"back extension hyperextension how to form",
-  "Bear Crawl":"bear crawl exercise how to form tutorial",
-  "Renegade Row":"renegade row how to form tutorial",
-  "Overhead Press":"barbell overhead press how to proper form",
-  "Barbell Overhead Press":"barbell overhead press how to proper form",
-  "Dumbbell Shoulder Press":"dumbbell shoulder press how to form tutorial",
-  "Lateral Raise":"lateral raise how to proper form tutorial",
-  "Front Raise":"dumbbell front raise how to form tutorial",
-  "Arnold Press":"arnold press how to form tutorial",
-  "Upright Row":"barbell upright row how to form",
-  "Rear Delt Fly":"rear delt fly how to form tutorial",
-  "Dumbbell Shrug":"dumbbell shrug how to form tutorial",
-  "Plank Shoulder Tap":"plank shoulder tap how to form",
-  "Barbell Bicep Curl":"barbell bicep curl how to proper form",
-  "Dumbbell Bicep Curl":"dumbbell bicep curl how to form tutorial",
-  "EZ Bar Curl":"ez bar curl how to form tutorial",
-  "Hammer Curl":"hammer curl how to form tutorial",
-  "Concentration Curl":"concentration curl how to form tutorial",
-  "Reverse Curl":"reverse curl how to form tutorial",
-  "Tricep Pushdown":"tricep pushdown cable how to form",
-  "Skull Crusher":"skull crusher how to form tutorial",
-  "Overhead Tricep Extension":"overhead tricep extension how to form",
-  "Tricep Kickback":"tricep kickback how to form tutorial",
-  "Plank":"plank exercise how to proper form",
-  "Side Plank":"side plank how to form tutorial",
-  "Russian Twist":"russian twist how to form tutorial",
-  "Hanging Leg Raise":"hanging leg raise how to form tutorial",
-  "Leg Raise":"leg raise abs how to form tutorial",
-  "Decline Sit-Up":"decline sit up how to form tutorial",
-  "Bicycle Crunch":"bicycle crunch how to form tutorial",
-  "Mountain Climber":"mountain climbers how to proper form",
-  "Flutter Kick":"flutter kicks how to form tutorial",
-  "Dead Bug":"dead bug exercise how to form tutorial",
-  "Hollow Hold":"hollow hold how to form tutorial",
-  "Sit-Up":"sit up how to proper form tutorial",
-  "Ab Wheel Rollout":"ab wheel rollout how to form tutorial",
-  "Barbell Squat":"barbell squat how to proper form tutorial",
-  "Squat":"bodyweight squat how to proper form",
-  "Dumbbell Squat":"dumbbell squat how to form tutorial",
-  "Goblet Squat":"goblet squat how to form tutorial",
-  "Jump Squat":"jump squat how to form tutorial",
-  "Sumo Squat":"sumo squat how to form tutorial",
-  "Bulgarian Split Squat":"bulgarian split squat how to form tutorial",
-  "Wall Sit":"wall sit exercise how to form",
-  "Lunge":"lunge exercise how to proper form tutorial",
-  "Walking Lunge":"walking lunge how to form tutorial",
-  "Dumbbell Lunge":"dumbbell lunge how to form tutorial",
-  "Reverse Lunge":"reverse lunge how to form tutorial",
-  "Curtsy Lunge":"curtsy lunge how to form tutorial",
-  "Step Up":"step up exercise how to form tutorial",
-  "Box Jump":"box jump how to form tutorial",
-  "Leg Press":"leg press how to proper form tutorial",
-  "Leg Curl":"lying leg curl how to form tutorial",
-  "Leg Extension":"leg extension machine how to form",
-  "Calf Raise":"calf raise how to proper form tutorial",
-  "Hack Squat":"hack squat how to form tutorial",
-  "Hip Thrust":"barbell hip thrust how to proper form",
-  "Dumbbell Hip Thrust":"dumbbell hip thrust how to form tutorial",
-  "Glute Bridge":"glute bridge how to form tutorial",
-  "Single Leg Glute Bridge":"single leg glute bridge how to form",
-  "Cable Glute Kickback":"cable glute kickback how to form tutorial",
-  "Donkey Kick":"donkey kick exercise how to form tutorial",
-  "Fire Hydrant":"fire hydrant exercise how to form tutorial",
-  "Frog Pump":"frog pump exercise how to form tutorial",
-  "Good Morning":"good morning exercise how to form tutorial",
-  "Sumo Deadlift":"sumo deadlift how to proper form tutorial",
-  "Romanian Deadlift":"romanian deadlift how to proper form tutorial",
-  "Dumbbell Romanian Deadlift":"dumbbell romanian deadlift how to form",
-  "Single Leg RDL":"single leg romanian deadlift how to form",
-  "Nordic Curl":"nordic curl hamstring how to form tutorial",
-  "Glute Ham Raise":"glute ham raise how to form tutorial",
-  "Stiff Leg Deadlift":"stiff leg deadlift how to form tutorial",
-  "Hip Hinge":"hip hinge how to proper form tutorial",
-  "Dumbbell Deadlift":"dumbbell deadlift how to form tutorial",
-  "Burpee":"burpee how to proper form tutorial",
-  "High Knees":"high knees exercise how to form",
-  "Kettlebell Swing":"kettlebell swing how to proper form tutorial",
-  "Dumbbell Swing":"dumbbell swing how to form tutorial",
-  "Thruster":"barbell thruster how to form tutorial",
-  "Dumbbell Thruster":"dumbbell thruster how to form tutorial",
-  "Jumping Jacks":"jumping jacks how to form tutorial",
-  "Power Clean":"power clean how to form tutorial",
-  "Dumbbell Clean":"dumbbell power clean how to form",
-  "Box Squat":"box squat how to form tutorial",
-};
-
-function getYTSearch(name){
-  const q=YT_Q[name]||(name+' exercise how to proper form tutorial');
-  return'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
-}
-
-// ── In-app video modal ─────────────────────────────────────────────────────
-// Uses YouTube search result page embedded in modal
-// When hosted on HTTPS (GitHub Pages), YouTube iframes load correctly
-function openModal(name){
-  const q=YT_Q[name]||(name+' exercise how to proper form tutorial');
-  // Embed a YouTube search via the embed API - uses first result
-  // We use a search embed which YouTube officially supports
-  const searchId=encodeURIComponent(q);
-  document.getElementById('modal-title').textContent=name+' — Tutorial';
-  // Use youtube's nocookie embed with a search-based approach
-  // Since we can't embed a search page, we embed using the watch page via the
-  // "videos" endpoint which shows search results playably
-  document.getElementById('modal-frame').src=
-    'https://www.youtube-nocookie.com/embed?listType=search&list='+searchId+'&rel=0&modestbranding=1&playsinline=1';
-  document.getElementById('vid-modal').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(e){
-  if(e&&e.target!==document.getElementById('vid-modal')&&e.target!==document.querySelector('.modal-close'))return;
-  document.getElementById('modal-frame').src='';
-  document.getElementById('vid-modal').classList.remove('open');
-  document.body.style.overflow='';
-}
-
-// Also allow closing with back button on mobile
-window.addEventListener('popstate',()=>{
-  if(document.getElementById('vid-modal').classList.contains('open'))closeModal();
-});
 
 function x(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 </script>
